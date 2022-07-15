@@ -5,20 +5,18 @@ import java.util.List;
 
 public class WiseSayingService {
 
-    private List<WiseSaying> database;
+    private final List<WiseSaying> database;
     private int wiseSayingLastId;
 
     WiseSayingService(){
         database = new ArrayList<>();
         wiseSayingLastId = 0;
-
     }
 
-    public WiseSaying write(String content, String author){
+    public WiseSaying create(String content, String author){
         int id = ++wiseSayingLastId;
         WiseSaying wiseSaying = new WiseSaying(id, content, author);
         database.add(wiseSaying);
-
         return wiseSaying;
     }
 
@@ -30,29 +28,39 @@ public class WiseSayingService {
             }
         }
         return database.get(index);
-
     }
 
     public List<WiseSaying> viewAll(){
         return database;
     }
 
-    public WiseSaying findById(int paramId) {
+    public int findIndex(WiseSaying wiseSaying){
+        int index = 0;
+
         for(int i = 0; i < database.size(); i++){
-            if(database.get(i).index == paramId){
-                return database.get(i);
+            if(database.get(i).equals(wiseSaying)){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
+    public WiseSaying findById(int paramId) {
+        for (WiseSaying wiseSaying : database) {
+            if (wiseSaying.index == paramId) {
+                return wiseSaying;
             }
         }
         return null;
     }
 
-    public void remove(int paramId) {
-        database.remove(paramId - 1);
+    public void remove(int paramIndex) {
+        database.remove(paramIndex);
     }
 
-    public void modify(int modifyId, WiseSaying newWiseSaying) {
-
-        database.set(modifyId - 1, newWiseSaying);
+    public void update(int modifyIndex, WiseSaying newWiseSaying) {
+        database.set(modifyIndex, newWiseSaying);
     }
 
 
