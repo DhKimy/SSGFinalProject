@@ -15,10 +15,8 @@ public class WiseSaying {
 
     @Override
     public String toString() {
-        return "WiseSaying{" +
-                "index=" + index +
-                ", content='" + content + '\'' +
-                ", author='" + author + '\'' +
-                '}';
+        return  "번호 : " + index +
+                " / 명언 : " + content +
+                " / 작가 : " + author;
     }
 }
