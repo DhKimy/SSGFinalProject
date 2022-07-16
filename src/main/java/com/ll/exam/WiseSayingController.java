@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class WiseSayingController {
-    Scanner sc = new Scanner(System.in);
-    WiseSayingService wiseSaying_ = new WiseSayingService();
+    Scanner sc;
+    WiseSayingService wiseSaying_;
     public Rq rq;
 
-    WiseSayingController(){
 
+    public WiseSayingController(Scanner sc, String path) {
+        this.sc = sc;
+        this.wiseSaying_ = new WiseSayingService(Util.readFromFile(path));
     }
 
     public void create() {
@@ -84,6 +86,10 @@ public class WiseSayingController {
         wiseSaying_.update(updateIndex, newWiseSaying);
         System.out.printf("%d번 명언이 수정되었습니다.\n", updateId);
 
+    }
+
+    public void save(String path) {
+        wiseSaying_.save(path);
     }
 }
 

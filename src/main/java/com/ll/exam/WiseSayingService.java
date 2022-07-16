@@ -8,9 +8,9 @@ public class WiseSayingService {
     private final List<WiseSaying> database;
     private int wiseSayingLastId;
 
-    WiseSayingService(){
-        database = new ArrayList<>();
-        wiseSayingLastId = 0;
+    WiseSayingService(List<WiseSaying> database){
+        this.database = database;
+        this.wiseSayingLastId = 0;
     }
 
     public WiseSaying create(String content, String author){
@@ -64,4 +64,7 @@ public class WiseSayingService {
     }
 
 
+    public void save(String path) {
+        Util.saveToFile(path, database);
+    }
 }

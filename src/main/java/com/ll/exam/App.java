@@ -4,11 +4,15 @@ import java.util.Scanner;
 
 public class App {
     Scanner sc = new Scanner(System.in);
-    WiseSayingController controller = new WiseSayingController();
+    App(){
+        this.sc = new Scanner(System.in);
+    }
 
     public void run(){
+        String path = "data.json";
 
         System.out.println("== 명언 SSG ==");
+        WiseSayingController controller = new WiseSayingController(sc, path);
 
         outer:
         while (true) {
@@ -33,6 +37,10 @@ public class App {
 
                 case "수정":
                     controller.update();
+                    break;
+
+                case "빌드":
+                    controller.save("저장소");
                     break;
 
                 case "종료":
